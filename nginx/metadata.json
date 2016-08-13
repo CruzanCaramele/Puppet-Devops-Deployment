@@ -1,0 +1,14 @@
+{
+  "name": "hamza-nginx",
+  "version": "0.1.0",
+  "author": "Hamza",
+  "summary": "Nginx Installation and Management on CentOS 7",
+  "license": "Apache 2.0",
+  "source": "https://github.com/CruzanCaramele/Puppet-Devops-Deployment",
+  "project_page": "https://github.com/CruzanCaramele/Puppet-Devops-Deployment",
+  "issues_url": "https://github.com/CruzanCaramele/Puppet-Devops-Deployment",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ]
+}
+
