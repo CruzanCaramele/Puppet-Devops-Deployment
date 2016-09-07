@@ -1,41 +1,45 @@
-# == Class: nginx
+# Class: nginx
 #
-# Full description of class nginx here.
 #
-# === Parameters
-#
-# Document parameters here.
-#
-# [*sample_parameter*]
-#   Explanation of what this parameter affects and what it defaults to.
-#   e.g. "Specify one or more upstream ntp servers as an array."
-#
-# === Variables
-#
-# Here you should define a list of variables that this module would require.
-#
-# [*sample_variable*]
-#   Explanation of how this variable affects the funtion of this class and if
-#   it has a default. e.g. "The parameter enc_ntp_servers must be set by the
-#   External Node Classifier as a comma separated list of hostnames." (Note,
-#   global variables should be avoided in favor of class parameters as
-#   of Puppet 2.6.)
-#
-# === Examples
-#
-#  class { 'nginx':
-#    servers => [ 'pool.ntp.org', 'ntp.local.company.com' ],
-#  }
-#
-# === Authors
-#
-# Author Name <author@domain.com>
-#
-# === Copyright
-#
-# Copyright 2016 Your name here, unless otherwise noted.
-#
-class nginx {
+class nginx (
 
+	$package_name           = $nginx::params::package_name,
+	$service_name           = $nginx::params::service_name,
+	$app_root_www           = $nginx::params::app_root_www,
+	$error_log_dir          = $nginx::params::error_log_dir,
+	$access_log_dir         = $nginx::params::access_log_dir,
+	$nginx_config_dir       = $nginx::params::nginx_config_dir,
+	$vhost_config_dir       = $nginx::params::vhost_config_dir,
+	$yum_utils_package      = $nginx::params::yum_utils_package,
+	$passenger_config_dir   = $nginx::params::passenger_config_dir,
+	$epel_release_package   = $nginx::params::epel_release_package
 
+	) inherits nginx::params {
+
+	include nginx::package 
+	include nginx::service
+	# resources
+
+	exec { 'enable-epel':
+		command      => 'yum-config-manager --enable epel',
+		path         => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
+		require      => [Package['epel-release'],Package['yum-utils']],
+		before       => Exec['add-el7-repo'],
+	}
+
+	exec { 'add-el7-repo':
+		command      => 'curl --fail -sSLo /etc/yum.repos.d/passenger.repo https://oss-binaries.phusionpassenger.com/yum/definitions/el-passenger.repo',
+		path         => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
+		require      => [Package['yum-utils'],Package[$nginx::package::pre_requisites]],
+		before       => Package['nginx'],
+	}
+
+	nginx::vhost {"default":
+		app_root_www         => $app_root_www,
+		error_log_dir        => $error_log_dir,
+		access_log_dir       => $access_log_dir,
+		nginx_config_dir     => $nginx_config_dir,
+		vhost_config_dir     => $vhost_config_dir,
+		passenger_config_dir => $passenger_config_dir,
+	}
 }
