@@ -14,16 +14,7 @@ the apache module contains manifests that will deploy a python application
 on a CentOS 7 Server
 
 ## Setup
-
-### What nginx affects
-
-* A list of files, packages, services, or operations that the module will alter,
-  impact, or execute on the system it's installed on.
-* This is a great place to stick any warnings.
-* Can be in list or paragraph form.
-
-### Setup Requirements 
-
+- using make (coming soon)
 
 ## Limitations
 
