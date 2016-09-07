@@ -1,0 +1,14 @@
+{
+  "name": "hamza-apache",
+  "version": "0.1.0",
+  "author": "Hamza",
+  "summary": "Deploy apps using the apache web server",
+  "license": "Apache 2.0",
+  "source": "www.github.com/CruzanCaramele",
+  "project_page": "https://www.github.com/CruzanCaramele",
+  "issues_url": "https://www.github.com/CruzanCaramele/issues",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ]
+}
+
