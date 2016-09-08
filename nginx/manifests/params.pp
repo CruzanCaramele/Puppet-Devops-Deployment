@@ -5,7 +5,7 @@ class nginx::params {
 	# resources
 	$package_name           = "nginx"
 	$service_name           = "nginx"
-	$app_root_www           = "/var/www/myapp/code"
+	$app_root_www           = "/var/www/myapp/"
 	$error_log_dir          = "/var/log/nginx"
 	$access_log_dir         = "/var/log/nginx"
 	$vhost_config_dir       = "/etc/nginx/conf.d"
