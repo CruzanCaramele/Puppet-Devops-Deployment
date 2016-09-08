@@ -41,4 +41,11 @@ define nginx::vhost (
 		path    => "${vhost_config_dir}/app.conf",
 		source  => 'puppet:///modules/nginx/app.conf',
 	}
+
+	vcsrepo {$app_root_www
+		ensure   => present,
+		provider => git,
+		source   => 'https://github.com/phusion/passenger-nodejs-connect-demo.git',
+
+	}
 }
