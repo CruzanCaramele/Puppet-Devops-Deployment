@@ -10,7 +10,7 @@ class nginx::package (
 
 	){
 
-	$pre_requisites = ['pygpgme', 'curl']
+	$pre_requisites = ['pygpgme', 'curl', 'git']
 
 	# resources
 	package { 'epel-release':
