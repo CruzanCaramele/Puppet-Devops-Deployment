@@ -46,6 +46,5 @@ define nginx::vhost (
 		ensure   => present,
 		provider => git,
 		source   => 'https://github.com/phusion/passenger-nodejs-connect-demo.git',
-
 	}
 }
