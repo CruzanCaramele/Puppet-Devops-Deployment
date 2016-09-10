@@ -1,0 +1,14 @@
+{
+  "name": "hamza-NodeJS",
+  "version": "0.1.0",
+  "author": "Hamza",
+  "summary": "Install NodeJS on CentOS 7",
+  "license": "Mozilla Public License Version 2.0",
+  "source": "https://github.com/CruzanCaramele/Puppet_Devops_Deployment",
+  "project_page": "https://github.com/CruzanCaramele/Puppet_Devops_Deployment",
+  "issues_url": "https://github.com/CruzanCaramele/Puppet_Devops_Deployment",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ]
+}
+
