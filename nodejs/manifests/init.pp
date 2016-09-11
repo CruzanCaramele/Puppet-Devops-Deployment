@@ -4,7 +4,6 @@
 class nodejs (
 
 	$package_name         = $nodejs::params::package_name,
-	$epel_release_package = $nodejs::params::package_name
 
 	) inherits nodejs::params {
 
