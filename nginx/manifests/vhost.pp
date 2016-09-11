@@ -47,4 +47,13 @@ define nginx::vhost (
 		provider => git,
 		source   => 'https://github.com/phusion/passenger-nodejs-connect-demo.git',
 	}
+
+	exec { 'run-app':
+		command      => 'npm install --production',
+		path        => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
+		cwd         => $app_root_www,
+		#user        => 'user_to_run_as',
+		#unless      => 'test param-that-would-be-true',
+		#refreshonly => true,
+	}
 }
