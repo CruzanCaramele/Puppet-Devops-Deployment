@@ -21,5 +21,5 @@ class nginx::params {
 	$yum_utils_package      = "yum-utils"
 	$nginx_config_dir       = "/etc/nginx"
 	$passenger_config_dir   = "/etc/nginx/conf.d"
-	$epel_release_package   = "epel-release"
+	#$epel_release_package   = "epel-release"
 }
