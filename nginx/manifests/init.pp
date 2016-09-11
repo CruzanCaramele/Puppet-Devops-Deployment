@@ -12,9 +12,11 @@ class nginx (
 	$vhost_config_dir       = $nginx::params::vhost_config_dir,
 	$yum_utils_package      = $nginx::params::yum_utils_package,
 	$passenger_config_dir   = $nginx::params::passenger_config_dir,
-	$epel_release_package   = $nginx::params::epel_release_package
 
 	) inherits nginx::params {
+
+	#require vcsrepo
+	require nodejs
 
 	include nginx::package 
 	include nginx::service
