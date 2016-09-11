@@ -2,6 +2,14 @@
 #
 #
 class nginx::params {
+
+	if ($::fqdn) {
+		$servername = $::fqdn
+	} else {
+			$servername = $::hostname
+	}
+	
+
 	# resources
 	$package_name           = "nginx"
 	$service_name           = "nginx"
