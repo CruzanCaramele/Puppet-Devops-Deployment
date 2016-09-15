@@ -19,7 +19,6 @@ define nginx::vhost (
 		ensure => file,
 		path   => "${nginx_config_dir}/nginx.conf",
 		source => 'puppet:///modules/nginx/nginx.conf',
-		notify => Service['nginx'],
 		before => [File['passenger-conf'], File['app-conf']],
 	}
 
@@ -27,16 +26,14 @@ define nginx::vhost (
 		ensure  => file,
 		path    => "${passenger_config_dir}/passenger.conf",
 		source  => 'puppet:///modules/nginx/passenger.conf',
-		notify  => Service['nginx'],
 		before  => File['app-conf'],
 	}
 
 	file { 'app-conf':
 		ensure   => file,
 		path     => "${vhost_config_dir}/app.conf",
-		notify   => Service['nginx'],
 		content  => template('nginx/app.conf.erb'),
-	}
+	} ->
 
 	vcsrepo {$app_root_www:
 		ensure    => present,
@@ -45,7 +42,7 @@ define nginx::vhost (
 		force     => true,
 		notify    => Service['nginx'],
 		source    => 'https://github.com/phusion/passenger-nodejs-connect-demo.git',
-	}
+	} ->
 
 	exec { 'run-app':
 		command      => 'npm install --production',
