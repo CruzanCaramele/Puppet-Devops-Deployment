@@ -10,8 +10,8 @@ class nginx::service (
 	# resources
 	service { 'nginx':
 		name        => $service_name,
-		enable      => true,
 		ensure      => running,
+		enable      => true,
 		require     => Package['nginx'],
 	}
 }
