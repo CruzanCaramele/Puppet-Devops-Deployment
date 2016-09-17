@@ -1,0 +1,18 @@
+<VirtualHost *:80>
+    ServerName <%= @servername %>
+
+    ServerAdmin hamza@cultureandbrands.com
+  WSGIScriptAlias / /var/www/myapp/mod_wsgi.wsgi
+  WSGIScriptReloading On
+
+  <Directory /var/www/myapp/>
+    Order allow,deny
+    Allow from all
+  </Directory>
+  Alias /static /var/www/myapp/static
+  <Directory /var/www/myapp/static/>
+    Order allow,deny
+    Allow from all
+  </Directory>     
+
+</VirtualHost>
