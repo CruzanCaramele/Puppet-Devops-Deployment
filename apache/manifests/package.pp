@@ -9,14 +9,14 @@ class apache::package (
 
 	) {
 
-	$pre_requisites = ['pygpgme', 'git', 'curl']
+	$pip_install   = ['flask']
+	$pre_requisites = ['pygpgme','curl', 'python', 'python-pip']
 	# resources
 
 	package { 'epel-release':
 		name   => $epel_release_package,
 		ensure => installed,
-		before => [Package["apache"], Package["yum-utils"]],
-	}
+	} ->
 
 	package { 'yum-utils':
 		name   => $yum_utils_package,
@@ -24,10 +24,18 @@ class apache::package (
 		before => Package["apache"],
 	} ->
 
+	package { 'git':
+		ensure => present,
+	} ->
+
 	package { $pre_requisites:
 		ensure => installed,
-		before => Package["apache"],
-	}
+	} ->
+
+	package { $pip_install:
+		ensure   => installed,
+		provider => pip,
+	} ->
 
 	package { 'apache':
 		name   => $package_name,
