@@ -9,11 +9,12 @@
 #
 class apache (
 
-	$package_name    = $apache::params::package_name,
-	$service_name    = $apache::params::service_name,
-	$app_directory   = $apache::params::app_directory,
-	$app_config_dir  = $apache::params::app_config_dir,
-	$wsgi_config_dir = $apache::params::wsgi_config_dir 
+	$package_name      = $apache::params::package_name,
+	$service_name      = $apache::params::service_name,
+	$app_directory     = $apache::params::app_directory,
+	$app_config_dir    = $apache::params::app_config_dir,
+	$wsgi_config_dir   = $apache::params::wsgi_config_dir,
+	$apache_config_dir = $apache::params::apache_config_dir 
 
 
 	) inherits apache::params {
@@ -37,8 +38,9 @@ class apache (
 	# }
 
 	apache::vhost {"default":
-		app_directory   => $app_directory,
-		app_config_dir  => $app_config_dir,
-		wsgi_config_dir => $wsgi_config_dir,
+		app_directory     => $app_directory,
+		app_config_dir    => $app_config_dir,
+		wsgi_config_dir   => $wsgi_config_dir,
+		apache_config_dir => $apache_config_dir,
 	}
 }
