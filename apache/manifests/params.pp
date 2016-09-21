@@ -16,6 +16,7 @@ class apache::params {
 	$app_directory        = "/var/www/myapp"
 	$app_config_dir       = "/etc/httpd/conf.d"
 	$wsgi_config_dir      = "/var/www/myapp"
+	$apache_config_dir    = "/etc/httpd/conf"
 	$yum_utils_package    = "yum-utils"
 	$epel_release_package = "epel-release"
 }
