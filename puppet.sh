@@ -32,3 +32,8 @@ echo "Installing puppet"
 yum install -y puppet > /dev/null
 
 echo "Puppet installed!"
+
+echo "Installing Git"
+yum installed -y git > /dev/null
+
+echo "Git installed!"
