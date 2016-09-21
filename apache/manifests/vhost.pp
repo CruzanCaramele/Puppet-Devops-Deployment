@@ -4,7 +4,7 @@
 #
 define apache::vhost (
 
-	$app_directory, $app_config_dir,$wsgi_config_dir
+	$app_directory, $app_config_dir,$wsgi_config_dir,$apache_config_dir
 
 	) {
 	# puppet code
@@ -15,9 +15,15 @@ define apache::vhost (
 		require => Package['apache'],
 	} ->
 
+	file { 'name':
+		ensure => file,
+		path   => "${apache_config_dir}/httpd.conf",
+		source => 'puppet:///modules/apache/httpd.conf',
+	} ->
+
 	file { 'app-conf':
 		ensure  => file,
-		path    => "${$app_config_dir}/app.conf",
+		path    => "${app_config_dir}/app.conf",
 		content => template('apache/app.conf.erb'),
 	} -> 
 
