@@ -13,6 +13,9 @@ define nginx::vhost (
 	Optional[String] $config_vdir_enable = $::nginx::config_vdir_enable,
 
 	) {
+	
+	$vhost_docroot = "${::nginx::docroot}/${name}"
+
 	# resources
 	file { "${config_vhost_dir}/${priority}--${name}.conf":
 		mode    => $config_mode,
@@ -21,5 +24,12 @@ define nginx::vhost (
 		notify  => Service['nginx_service'],
 		ensure  => file,
 		content => template("${module_name}/vhost/vhost.conf.erb"),
+	}
+
+	file { $vhost_docroot:
+		mode    => '0755',
+		owner   => $config_owner,
+		group   => $config_group,
+		ensure  => directory,
 	}
 }
