@@ -8,6 +8,7 @@ class nginx(
 
 	String $ensure                       = $::nginx::params::ensure,
 	String $docroot						 = $::nginx::params::docroot,
+	String $vhost_dir					 = $::nginx::params::vhost_dir
 	String $config_dir                   = $::nginx::params::config_dir,
 	String $config_mode                  = $::nginx::params::config_mode,
 	String $config_group                 = $::nginx::params::config_group,
