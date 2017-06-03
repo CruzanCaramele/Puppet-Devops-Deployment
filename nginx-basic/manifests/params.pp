@@ -12,4 +12,23 @@ class nginx::params {
 	$config_ensure   = 'file'
 	$config_log_dir  = '/var/log/nginx'
 	$config_pid_file = '/run/nginx.pid'
+
+	# selectors
+
+	$config_vdir_enable = $facts['os']['family'] ? {
+		'Debian' => $config_dir,
+		default  => undef,
+	}
+
+	$config_process_user = $facts['os']['family'] ? {
+		'Debian' => 'www-data',
+		default  => 'nginx',
+	}
+
+	$vhost_dir = $facts['os']['family'] ? {
+		'Debian' => "${config_dir}/sites-enabled",
+		default  => ${config_confd},
+	}
+
+	# service
 }
