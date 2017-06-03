@@ -30,5 +30,13 @@ class nginx::params {
 		default  => ${config_confd},
 	}
 
-	# service
+	# service parameters
+	$service_name       = 'nginx'
+	$service_enable     = 'true'
+	$service_ensure     = 'running'
+	$service_pattern    = 'nginx'
+	$service_hasstatus  = 'true'
+	$service_hasrestart = 'true'
+
+	
 }
