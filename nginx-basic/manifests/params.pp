@@ -28,7 +28,7 @@ class nginx::params {
 
 	$vhost_dir = $facts['os']['family'] ? {
 		'Debian' => "${config_dir}/sites-enabled",
-		default  => ${config_confd},
+		default  => $config_confd,
 	}
 
 	# service parameters
