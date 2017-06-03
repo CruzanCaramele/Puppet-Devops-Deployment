@@ -17,7 +17,7 @@ class nginx::service(
 		ensure      => $service_ensure,
 		enable      => $service_enable,
 		pattern     => $service_pattern,
-		hasstatus   => $service_hasstatus
+		hasstatus   => $service_hasstatus,
 		hasrestart  => $service_hasrestart,
 		#require    => Class["config"],
 	}
