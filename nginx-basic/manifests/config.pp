@@ -1,4 +1,4 @@
-# Class: nginx::config
+ # Class: nginx::config
 #
 #
 class nginx::config(
@@ -24,5 +24,18 @@ class nginx::config(
 		group   => $config_group,
 		ensure  => $config_ensure,
 		content => template("${module_name}/conf.d/nginx.conf.erb"),
+	}
+
+	file { $config_log_dir:
+		ensure  => directory,
+		recurse => true,
+	}
+
+	file { $docroot:
+		mode    => $config_mode,
+		owner   => $config_owner,
+		group   => $config_group,
+		ensure  => directory,
+		recurse => true,
 	}
 }
