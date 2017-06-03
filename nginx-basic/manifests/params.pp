@@ -1,8 +1,9 @@
 # parameters
 #
 class nginx::params {
-	# parameters
+	# config parameters
 	$ensure          = 'present'
+	$docroot         = '/usr/share/nginx'
 	$config_dir      = '/etc/nginx'
 	$config_mode     = '0664'
 	$config_group    = 'root'
@@ -38,5 +39,5 @@ class nginx::params {
 	$service_hasstatus  = 'true'
 	$service_hasrestart = 'true'
 
-	
+
 }
